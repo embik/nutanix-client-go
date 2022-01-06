@@ -74,7 +74,6 @@ func NewClient(credentials *Credentials, userAgent string, absolutePath string) 
 	}
 
 	if credentials.ProxyURL != "" {
-		log.Printf("[DEBUG] Using proxy: %s\n", credentials.ProxyURL)
 		proxy, err := url.Parse(credentials.ProxyURL)
 		if err != nil {
 			return nil, fmt.Errorf("error parsing proxy url: %s", err)
