@@ -1,6 +1,7 @@
 package v3
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -132,7 +133,7 @@ func TestOperations_CreateVM(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.CreateVM(tt.args.createRequest)
+			got, err := op.CreateVM(context.TODO(), tt.args.createRequest)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.CreateVM() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -204,7 +205,7 @@ func TestOperations_DeleteVM(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			if _, err := op.DeleteVM(tt.args.UUID); (err != nil) != tt.wantErr {
+			if _, err := op.DeleteVM(context.TODO(), tt.args.UUID); (err != nil) != tt.wantErr {
 				t.Errorf("Operations.DeleteVM() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
@@ -256,7 +257,7 @@ func TestOperations_GetVM(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.GetVM(tt.args.UUID)
+			got, err := op.GetVM(context.TODO(), tt.args.UUID)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.GetVM() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -319,7 +320,7 @@ func TestOperations_ListVM(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.ListVM(tt.args.getEntitiesRequest)
+			got, err := op.ListVM(context.TODO(), tt.args.getEntitiesRequest)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.ListVM() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -425,7 +426,7 @@ func TestOperations_UpdateVM(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.UpdateVM(tt.args.UUID, tt.args.body)
+			got, err := op.UpdateVM(context.TODO(), tt.args.UUID, tt.args.body)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.UpdateVM() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -530,7 +531,7 @@ func TestOperations_CreateSubnet(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.CreateSubnet(tt.args.createRequest)
+			got, err := op.CreateSubnet(context.TODO(), tt.args.createRequest)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.CreateSubnet() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -603,7 +604,7 @@ func TestOperations_DeleteSubnet(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			if _, err := op.DeleteSubnet(tt.args.UUID); (err != nil) != tt.wantErr {
+			if _, err := op.DeleteSubnet(context.TODO(), tt.args.UUID); (err != nil) != tt.wantErr {
 				t.Errorf("Operations.DeleteSubnet() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
@@ -656,7 +657,7 @@ func TestOperations_GetSubnet(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.GetSubnet(tt.args.UUID)
+			got, err := op.GetSubnet(context.TODO(), tt.args.UUID)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.GetSubnet() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -720,7 +721,7 @@ func TestOperations_ListSubnet(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.ListSubnet(tt.args.getEntitiesRequest)
+			got, err := op.ListSubnet(context.TODO(), tt.args.getEntitiesRequest)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.ListSubnet() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -828,7 +829,7 @@ func TestOperations_UpdateSubnet(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.UpdateSubnet(tt.args.UUID, tt.args.body)
+			got, err := op.UpdateSubnet(context.TODO(), tt.args.UUID, tt.args.body)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.UpdateSubnet() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -940,7 +941,7 @@ func TestOperations_CreateImage(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.CreateImage(tt.args.body)
+			got, err := op.CreateImage(context.TODO(), tt.args.body)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.CreateImage() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -987,7 +988,7 @@ func TestOperations_UploadImageError(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			if err := op.UploadImage(tt.args.UUID, tt.args.filepath); (err != nil) != tt.wantErr {
+			if err := op.UploadImage(context.TODO(), tt.args.UUID, tt.args.filepath); (err != nil) != tt.wantErr {
 				t.Errorf("Operations.UploadImage() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
@@ -1037,7 +1038,7 @@ func TestOperations_UploadImage(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			if err := op.UploadImage(tt.args.UUID, tt.args.filepath); err != nil {
+			if err := op.UploadImage(context.TODO(), tt.args.UUID, tt.args.filepath); err != nil {
 				t.Errorf("Operations.UploadImage() error = %v", err)
 			}
 		})
@@ -1105,7 +1106,7 @@ func TestOperations_DeleteImage(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			if _, err := op.DeleteImage(tt.args.UUID); (err != nil) != tt.wantErr {
+			if _, err := op.DeleteImage(context.TODO(), tt.args.UUID); (err != nil) != tt.wantErr {
 				t.Errorf("Operations.DeleteImage() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
@@ -1158,7 +1159,7 @@ func TestOperations_GetImage(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.GetImage(tt.args.UUID)
+			got, err := op.GetImage(context.TODO(), tt.args.UUID)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.GetImage() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -1222,7 +1223,7 @@ func TestOperations_ListImage(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.ListImage(tt.args.getEntitiesRequest)
+			got, err := op.ListImage(context.TODO(), tt.args.getEntitiesRequest)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.ListImage() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -1327,7 +1328,7 @@ func TestOperations_UpdateImage(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.UpdateImage(tt.args.UUID, tt.args.body)
+			got, err := op.UpdateImage(context.TODO(), tt.args.UUID, tt.args.body)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.UpdateImage() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -1385,7 +1386,7 @@ func TestOperations_GetCluster(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.GetCluster(tt.args.UUID)
+			got, err := op.GetCluster(context.TODO(), tt.args.UUID)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.GetCluster() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -1449,7 +1450,7 @@ func TestOperations_ListCluster(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.ListCluster(tt.args.getEntitiesRequest)
+			got, err := op.ListCluster(context.TODO(), tt.args.getEntitiesRequest)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.ListCluster() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -1526,7 +1527,7 @@ func TestOperations_CreateOrUpdateCategoryKey(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.CreateOrUpdateCategoryKey(tt.args.body)
+			got, err := op.CreateOrUpdateCategoryKey(context.TODO(), tt.args.body)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.CreateOrUpdateCategoryKey() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -1589,7 +1590,7 @@ func TestOperations_ListCategories(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.ListCategories(tt.args.getEntitiesRequest)
+			got, err := op.ListCategories(context.TODO(), tt.args.getEntitiesRequest)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.ListCategories() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -1645,7 +1646,7 @@ func TestOperations_DeleteCategoryKey(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			if err := op.DeleteCategoryKey(tt.args.name); (err != nil) != tt.wantErr {
+			if err := op.DeleteCategoryKey(context.TODO(), tt.args.name); (err != nil) != tt.wantErr {
 				t.Errorf("Operations.DeleteCategoryKey() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
@@ -1702,7 +1703,7 @@ func TestOperations_GetCategoryKey(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.GetCategoryKey(tt.args.name)
+			got, err := op.GetCategoryKey(context.TODO(), tt.args.name)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.GetCategoryKey() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -1766,7 +1767,7 @@ func TestOperations_ListCategoryValues(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.ListCategoryValues(tt.args.name, tt.args.getEntitiesRequest)
+			got, err := op.ListCategoryValues(context.TODO(), tt.args.name, tt.args.getEntitiesRequest)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.ListCategoryValues() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -1846,7 +1847,7 @@ func TestOperations_CreateOrUpdateCategoryValue(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.CreateOrUpdateCategoryValue(tt.args.name, tt.args.body)
+			got, err := op.CreateOrUpdateCategoryValue(context.TODO(), tt.args.name, tt.args.body)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.CreateOrUpdateCategoryValue() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -1911,7 +1912,7 @@ func TestOperations_GetCategoryValue(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.GetCategoryValue(tt.args.name, tt.args.value)
+			got, err := op.GetCategoryValue(context.TODO(), tt.args.name, tt.args.value)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.GetCategoryValue() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -1968,7 +1969,7 @@ func TestOperations_DeleteCategoryValue(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			if err := op.DeleteCategoryValue(tt.args.name, tt.args.value); (err != nil) != tt.wantErr {
+			if err := op.DeleteCategoryValue(context.TODO(), tt.args.name, tt.args.value); (err != nil) != tt.wantErr {
 				t.Errorf("Operations.DeleteCategoryValue() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
@@ -2025,7 +2026,7 @@ func TestOperations_GetCategoryQuery(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.GetCategoryQuery(tt.args.query)
+			got, err := op.GetCategoryQuery(context.TODO(), tt.args.query)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.GetCategoryQuery() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -2125,7 +2126,7 @@ func TestOperations_CreateNetworkSecurityRule(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.CreateNetworkSecurityRule(tt.args.request)
+			got, err := op.CreateNetworkSecurityRule(context.TODO(), tt.args.request)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.CreateNetworkSecurityRule() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -2199,7 +2200,7 @@ func TestOperations_DeleteNetworkSecurityRule(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			if _, err := op.DeleteNetworkSecurityRule(tt.args.UUID); (err != nil) != tt.wantErr {
+			if _, err := op.DeleteNetworkSecurityRule(context.TODO(), tt.args.UUID); (err != nil) != tt.wantErr {
 				t.Errorf("Operations.DeleteNetworkSecurityRule() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
@@ -2253,7 +2254,7 @@ func TestOperations_GetNetworkSecurityRule(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.GetNetworkSecurityRule(tt.args.UUID)
+			got, err := op.GetNetworkSecurityRule(context.TODO(), tt.args.UUID)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.GetNetworkSecurityRule() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -2317,7 +2318,7 @@ func TestOperations_ListNetworkSecurityRule(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.ListNetworkSecurityRule(tt.args.getEntitiesRequest)
+			got, err := op.ListNetworkSecurityRule(context.TODO(), tt.args.getEntitiesRequest)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.ListNetworkSecurityRule() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -2420,7 +2421,7 @@ func TestOperations_UpdateNetworkSecurityRule(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.UpdateNetworkSecurityRule(tt.args.UUID, tt.args.body)
+			got, err := op.UpdateNetworkSecurityRule(context.TODO(), tt.args.UUID, tt.args.body)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.UpdateNetworkSecurityRule() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -2521,7 +2522,7 @@ func TestOperations_CreateVolumeGroup(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.CreateVolumeGroup(tt.args.request)
+			got, err := op.CreateVolumeGroup(context.TODO(), tt.args.request)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.CreateVolumeGroup() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -2577,7 +2578,7 @@ func TestOperations_DeleteVolumeGroup(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			if err := op.DeleteVolumeGroup(tt.args.UUID); (err != nil) != tt.wantErr {
+			if err := op.DeleteVolumeGroup(context.TODO(), tt.args.UUID); (err != nil) != tt.wantErr {
 				t.Errorf("Operations.DeleteVolumeGroup() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
@@ -2630,7 +2631,7 @@ func TestOperations_GetVolumeGroup(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.GetVolumeGroup(tt.args.UUID)
+			got, err := op.GetVolumeGroup(context.TODO(), tt.args.UUID)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.GetVolumeGroup() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -2694,7 +2695,7 @@ func TestOperations_ListVolumeGroup(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.ListVolumeGroup(tt.args.getEntitiesRequest)
+			got, err := op.ListVolumeGroup(context.TODO(), tt.args.getEntitiesRequest)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.ListVolumeGroup() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -2797,7 +2798,7 @@ func TestOperations_UpdateVolumeGroup(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.UpdateVolumeGroup(tt.args.UUID, tt.args.body)
+			got, err := op.UpdateVolumeGroup(context.TODO(), tt.args.UUID, tt.args.body)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.UpdateVolumeGroup() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -2861,7 +2862,7 @@ func TestOperations_GetHost(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.GetHost(tt.args.UUID)
+			got, err := op.GetHost(context.TODO(), tt.args.UUID)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.GetHost() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -2925,7 +2926,7 @@ func TestOperations_ListHost(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.ListHost(tt.args.getEntitiesRequest)
+			got, err := op.ListHost(context.TODO(), tt.args.getEntitiesRequest)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.ListHost() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -3046,7 +3047,7 @@ func TestOperations_CreateProject(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.CreateProject(tt.args.request)
+			got, err := op.CreateProject(context.TODO(), tt.args.request)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.CreateProject() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -3104,7 +3105,7 @@ func TestOperations_GetProject(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.GetProject(tt.args.UUID)
+			got, err := op.GetProject(context.TODO(), tt.args.UUID)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.GetProject() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -3168,7 +3169,7 @@ func TestOperations_ListProject(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.ListProject(tt.args.getEntitiesRequest)
+			got, err := op.ListProject(context.TODO(), tt.args.getEntitiesRequest)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.ListProject() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -3289,7 +3290,7 @@ func TestOperations_UpdateProject(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.UpdateProject(tt.args.UUID, tt.args.body)
+			got, err := op.UpdateProject(context.TODO(), tt.args.UUID, tt.args.body)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.UpdateProject() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -3362,7 +3363,7 @@ func TestOperations_DeleteProject(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			if _, err := op.DeleteProject(tt.args.UUID); (err != nil) != tt.wantErr {
+			if _, err := op.DeleteProject(context.TODO(), tt.args.UUID); (err != nil) != tt.wantErr {
 				t.Errorf("Operations.DeleteProject() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
@@ -3472,7 +3473,7 @@ func TestOperations_CreateAccessControlPolicy(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.CreateAccessControlPolicy(tt.args.request)
+			got, err := op.CreateAccessControlPolicy(context.TODO(), tt.args.request)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.CreateAccessControlPolicy() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -3530,7 +3531,7 @@ func TestOperations_GetAccessControlPolicy(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.GetAccessControlPolicy(tt.args.UUID)
+			got, err := op.GetAccessControlPolicy(context.TODO(), tt.args.UUID)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.GetAccessControlPolicy() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -3594,7 +3595,7 @@ func TestOperations_ListAccessControlPolicy(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.ListAccessControlPolicy(tt.args.getEntitiesRequest)
+			got, err := op.ListAccessControlPolicy(context.TODO(), tt.args.getEntitiesRequest)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.ListAccessControlPolicy() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -3709,7 +3710,7 @@ func TestOperations_UpdateAccessControlPolicy(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.UpdateAccessControlPolicy(tt.args.UUID, tt.args.body)
+			got, err := op.UpdateAccessControlPolicy(context.TODO(), tt.args.UUID, tt.args.body)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.UpdateAccessControlPolicy() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -3782,7 +3783,7 @@ func TestOperations_DeleteAccessControlPolicy(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			if _, err := op.DeleteAccessControlPolicy(tt.args.UUID); (err != nil) != tt.wantErr {
+			if _, err := op.DeleteAccessControlPolicy(context.TODO(), tt.args.UUID); (err != nil) != tt.wantErr {
 				t.Errorf("Operations.DeleteAccessControlPolicy() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
@@ -3896,7 +3897,7 @@ func TestOperations_CreateRole(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.CreateRole(tt.args.request)
+			got, err := op.CreateRole(context.TODO(), tt.args.request)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.CreateRole() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -3954,7 +3955,7 @@ func TestOperations_GetRole(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.GetRole(tt.args.UUID)
+			got, err := op.GetRole(context.TODO(), tt.args.UUID)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.GetRole() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -4018,7 +4019,7 @@ func TestOperations_ListRole(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.ListRole(tt.args.getEntitiesRequest)
+			got, err := op.ListRole(context.TODO(), tt.args.getEntitiesRequest)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.ListRole() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -4137,7 +4138,7 @@ func TestOperations_UpdateRole(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.UpdateRole(tt.args.UUID, tt.args.body)
+			got, err := op.UpdateRole(context.TODO(), tt.args.UUID, tt.args.body)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.UpdateRole() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -4210,7 +4211,7 @@ func TestOperations_DeleteRole(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			if _, err := op.DeleteRole(tt.args.UUID); (err != nil) != tt.wantErr {
+			if _, err := op.DeleteRole(context.TODO(), tt.args.UUID); (err != nil) != tt.wantErr {
 				t.Errorf("Operations.DeleteRole() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
@@ -4320,7 +4321,7 @@ func TestOperations_CreateUser(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.CreateUser(tt.args.request)
+			got, err := op.CreateUser(context.TODO(), tt.args.request)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.CreateUser() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -4378,7 +4379,7 @@ func TestOperations_GetUser(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.GetUser(tt.args.UUID)
+			got, err := op.GetUser(context.TODO(), tt.args.UUID)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.GetUser() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -4442,7 +4443,7 @@ func TestOperations_ListUser(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.ListUser(tt.args.getEntitiesRequest)
+			got, err := op.ListUser(context.TODO(), tt.args.getEntitiesRequest)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.ListUser() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -4559,7 +4560,7 @@ func TestOperations_UpdateUser(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.UpdateUser(tt.args.UUID, tt.args.body)
+			got, err := op.UpdateUser(context.TODO(), tt.args.UUID, tt.args.body)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.UpdateUser() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -4632,7 +4633,7 @@ func TestOperations_DeleteUser(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			if _, err := op.DeleteUser(tt.args.UUID); (err != nil) != tt.wantErr {
+			if _, err := op.DeleteUser(context.TODO(), tt.args.UUID); (err != nil) != tt.wantErr {
 				t.Errorf("Operations.DeleteUser() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
@@ -4809,7 +4810,7 @@ func TestOperations_CreateProtectionRule(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.CreateProtectionRule(tt.args.request)
+			got, err := op.CreateProtectionRule(context.TODO(), tt.args.request)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.CreateProtectionRule() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -4867,7 +4868,7 @@ func TestOperations_GetProtectionRule(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.GetProtectionRule(tt.args.UUID)
+			got, err := op.GetProtectionRule(context.TODO(), tt.args.UUID)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.GetProtectionRules() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -4931,7 +4932,7 @@ func TestOperations_ListProtectionRules(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.ListProtectionRules(tt.args.getEntitiesRequest)
+			got, err := op.ListProtectionRules(context.TODO(), tt.args.getEntitiesRequest)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.ListProtectionRules() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -5115,7 +5116,7 @@ func TestOperations_UpdateProtectionRules(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.UpdateProtectionRule(tt.args.UUID, tt.args.body)
+			got, err := op.UpdateProtectionRule(context.TODO(), tt.args.UUID, tt.args.body)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.UpdateProtectionRules() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -5171,7 +5172,7 @@ func TestOperations_DeleteProtectionRules(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			if _, err := op.DeleteProtectionRule(tt.args.UUID); (err != nil) != tt.wantErr {
+			if _, err := op.DeleteProtectionRule(context.TODO(), tt.args.UUID); (err != nil) != tt.wantErr {
 				t.Errorf("Operations.DeleteProtectionRules() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
@@ -5538,7 +5539,7 @@ func TestOperations_CreateRecoveryPlan(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.CreateRecoveryPlan(tt.args.request)
+			got, err := op.CreateRecoveryPlan(context.TODO(), tt.args.request)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.CreateRecoveryPlans() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -5596,7 +5597,7 @@ func TestOperations_GetRecoveryPlan(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.GetRecoveryPlan(tt.args.UUID)
+			got, err := op.GetRecoveryPlan(context.TODO(), tt.args.UUID)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.GetRecoveryPlan() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -5660,7 +5661,7 @@ func TestOperations_ListRecoveryPlans(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.ListRecoveryPlans(tt.args.getEntitiesRequest)
+			got, err := op.ListRecoveryPlans(context.TODO(), tt.args.getEntitiesRequest)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.ListRecoveryPlans() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -6034,7 +6035,7 @@ func TestOperations_UpdateRecoveryPlans(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			got, err := op.UpdateRecoveryPlan(tt.args.UUID, tt.args.body)
+			got, err := op.UpdateRecoveryPlan(context.TODO(), tt.args.UUID, tt.args.body)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("Operations.UpdateRecoveryPlans() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -6090,7 +6091,7 @@ func TestOperations_DeleteRecoveryPlan(t *testing.T) {
 			op := Operations{
 				client: tt.fields.client,
 			}
-			if _, err := op.DeleteRecoveryPlan(tt.args.UUID); (err != nil) != tt.wantErr {
+			if _, err := op.DeleteRecoveryPlan(context.TODO(), tt.args.UUID); (err != nil) != tt.wantErr {
 				t.Errorf("Operations.DeleteRecoveryPlan() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
