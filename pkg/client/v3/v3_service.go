@@ -631,7 +631,7 @@ func (op Operations) DeleteCategoryValue(ctx context.Context, name string, value
  * @return *CategoryQueryResponse
  */
 func (op Operations) GetCategoryQuery(ctx context.Context, query *CategoryQueryInput) (*CategoryQueryResponse, error) {
-	path := "/categories/query"
+	path := "/category/query"
 
 	req, err := op.client.NewRequest(ctx, http.MethodPost, path, query)
 	categoryQueryResponse := new(CategoryQueryResponse)
